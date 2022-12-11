@@ -16,8 +16,8 @@ public class RunMatrix {
 
         int [][] table = new int [matrixSize][matrixSize];
 
-        for (int row=0; row < matrixSize; row++) {
-            for (int col=0; col < matrixSize; col++) {
+        for (int row = 0; row < matrixSize; row++) {
+            for (int col = 0; col < matrixSize; col++) {
                 System.out.print(table[row][col] +"\t");
             }
             System.out.print("\n");
@@ -25,8 +25,8 @@ public class RunMatrix {
 
         System.out.println("Populating matrix with values...");
 
-        for (int row=0; row < matrixSize; row++) {
-            for (int col=0; col < matrixSize; col++) {
+        for (int row = 0; row < matrixSize; row++) {
+            for (int col = 0; col < matrixSize; col++) {
                 table[row][col] = row * matrixSize + col +1;
                 //"+1" makes it so that printing won't start at 0
                 System.out.print(table[row][col] +"\t");
@@ -36,18 +36,21 @@ public class RunMatrix {
 
         System.out.println("Swapping values across diagonal line...");
         swapperVariable = 0;
-        moveLeftDiagonal = 1;
-        moveDownDiagonal = 0;
-        for (int row=0; row < matrixSize; row++) {
-            for (int col=0; col < matrixSize; col++) {
-                table[row][col] = (matrixSize*matrixSize)-swapperVariable;
+        moveLeftDiagonal = 1;//the variable that keeps the diagonal equation moving left
+        moveDownDiagonal = 0;//the variable that keeps the diagonal equation moving down
+
+        for (int row = 0; row < matrixSize; row++) {
+            for (int col = 0; col < matrixSize; col++) {
+                table[row][col] = (matrixSize*matrixSize)-swapperVariable;//swapperVariable will make values descend rather than ascend
+
                 table[moveDownDiagonal][matrixSize-moveLeftDiagonal]= matrixSize+(row*(matrixSize-1));
+                //code above keeps the diagonal line untouched in the value swap
 
                 System.out.print(table[row][col] +"\t");
-                swapperVariable++;
-
+                swapperVariable++;//makes values eventually descend to 1
             }
             System.out.print("\n");
+
             moveDownDiagonal++;
             moveLeftDiagonal++;
         }
